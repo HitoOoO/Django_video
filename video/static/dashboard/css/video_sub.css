@@ -1,0 +1,13 @@
+input ,select{
+    display: inline-block !important;
+    width : 50% !important;
+}
+
+.add-url {
+    width: 50%;
+    padding : 10px;
+    border:1px solid #cccccc;
+}
+#add-url-btn,#add-start-btn{
+    width: 60px !important;
+}

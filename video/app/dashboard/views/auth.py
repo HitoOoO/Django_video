@@ -10,19 +10,24 @@ from django.shortcuts import redirect,reverse
 from django.contrib.auth import login,authenticate,logout
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
+from app.utils.permission import dashboard_auth
+
 class Login(View):
     TEMPLATE = 'dashboard/auth/login.html'
 
     def get(self,request):
         if request.user.is_authenticated:              #判断是否已经是登陆状态
             return redirect(reverse('dashboard_index'))
-        data = {'error':''}
 
+        to = request.GET.get('to','')
+        data = {'error': '','to':to}
         return render_to_response(request,self.TEMPLATE,data=data)
 
     def post(self,request):
         username = request.POST.get('username')    #获取表单提交的用户名密码
         password = request.POST.get('password')
+        to = request.GET.get('to','')
+
         data = {}
         print(username,password)
 
@@ -41,6 +46,9 @@ class Login(View):
             data['error'] = '你无权登录'
             return render_to_response(request,self.TEMPLATE,data=data)
         login(request,user)
+
+        if to:
+            return redirect(to)
         return redirect(reverse('dashboard_index'))
 
 class Logout(View):
@@ -53,7 +61,7 @@ class Logout(View):
 class AdminManger(View):
 
     TEMPLATE = 'dashboard/auth/admin.html'
-
+    @dashboard_auth
     def get(self,request):
         users = User.objects.all()                      #显示全部用户
         page = request.GET.get('page',1)
