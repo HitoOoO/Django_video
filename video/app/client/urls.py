@@ -6,7 +6,7 @@
 # @Software: PyCharm
 
 from django.urls import path
-
+from .views.base import Index
 urlpatterns = [
-
+    path('',Index.as_view(),name='client_index')
 ]
