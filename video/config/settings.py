@@ -127,3 +127,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
+
+
+#配置七牛云
+QINIU_AK = 'GtO4KyOPPqF6aN5o2WmNK0Dk2S9ZBgcExl2OYyNk'
+QINIU_SK = 'Hgq6XpgcONghctVm8KnrOMD16s42EEvGs9mSKahT'
+QINIU_VIDEO = 'djangovideotest'
+QINIU_VIDEO_URL = 'http://r7jitv5t0.hb-btk.clouddn.com'

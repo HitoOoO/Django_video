@@ -2,7 +2,7 @@
     margin-left: 20px;
 }
 .video-select{
-    width: 25%;
+    width: 30%;
     display: inline-block;
 }
 .add-video-area {
@@ -22,4 +22,7 @@
     overflow :hidden;
     white-space: nowrap;
     text-overflow:ellipsis;
+}
+#custom-h3{
+    margin-top: 60px;
 }
