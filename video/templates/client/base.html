@@ -8,6 +8,7 @@
     ${self.css()}
 </head>
 <body>
+<%! from django.shortcuts import reverse %>
 <header>导航</header>
 <div class="base-content">
     ${self.content()}
@@ -16,8 +17,8 @@
 </div>
 <footer >
     <ul>
-        <li>外链</li>
-        <li>内链</li>
+        <li><a href="${reverse('client_ex_video')}">外链</a></li>
+        <li><a href="${reverse('client_cus_video')}">内链</a></li>
         <li>我的</li>
     </ul>
 </footer>

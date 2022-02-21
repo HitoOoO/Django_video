@@ -1,0 +1,22 @@
+.video-images{
+    width: 100%;
+    display: block;
+    margin-bottom: 1rem;
+}
+.span {
+    font-weight: bold;
+}
+p {
+    margin-bottom: 0.3rem;
+}
+.info{
+    margin-bottom: 1rem;
+    display: block;
+}
+.number-ul {
+    margin-bottom: 3rem;
+
+}
+.number-ul li {
+    display: inline-block;
+}

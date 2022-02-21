@@ -1,0 +1,32 @@
+<%inherit file="../base.html" />
+<%def name="content()">
+<img src="${video.image}" class="video-images" />
+
+<div class="data">
+    <p><span class="span">名称:</span><br />${video.name}</p>
+    <p>
+        <span class="span">演员:</span>
+        <ul>
+        % for man in video.video_star.all():
+        <Li>${man.name}:${man.ident}</Li>
+        % endfor
+
+        </ul>
+    </p>
+    <p>
+        <span class="span">简介:</span><br/>
+        <span class="info">${video.info}</span>
+    </p>
+    <p>
+        <span class="span">选集: </span><br/>
+        <ul class="number-ul">
+        % for data in video.video_sub.all():
+            <li><a href="${data.url}"  target="_blank">第${data.number}集</a></li>
+        % endfor
+        </ul>
+    </p>
+</div>
+</%def>
+<%def name="css()">
+<link href="/static/client/css/video_sub.css" rel="stylesheet" />
+</%def>
