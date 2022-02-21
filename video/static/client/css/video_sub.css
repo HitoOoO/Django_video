@@ -20,3 +20,28 @@ p {
 .number-ul li {
     display: inline-block;
 }
+.comment-area{
+    width: 100%;
+
+}
+.comment-area a {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+}
+
+.comment-area textarea{
+    width: 95%;
+    border: 1px solid #cccccc;
+    height: 5rem;
+    border-radius: 4px;
+    margin: 0 auto;
+    display: block;
+}
+#comment-submit{
+    border: 1px solid #cccccc;
+    padding: 0.2rem;
+    margin-left: 2.5%;
+
+}

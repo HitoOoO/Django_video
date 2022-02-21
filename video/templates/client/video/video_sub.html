@@ -34,8 +34,23 @@ from app.utils.permission import client_auth
         </ul>
         % endif
     </p>
+    <p>
+        <span class="span">评论区域</span><br>
+        <div class="comment-area">
+            % if user:
+            <textarea id="comment-content"></textarea>
+            ${csrf_token}
+            <button id="comment-submit" data-url="${reverse('client_add_comment')}" data-user-id="${user.id}" data-video-id="${video.id}">提交</button>
+            % else:
+            <a href="${reverse('client_auth')}">登录可评论</a>
+            % endif
+        </div>
+    </p>
 </div>
 </%def>
 <%def name="css()">
 <link href="/static/client/css/video_sub.css" rel="stylesheet" />
+</%def>
+<%def name="js()">
+<script src="/static/client/js/video_sub.js"></script>
 </%def>

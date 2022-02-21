@@ -9,6 +9,7 @@ from django.urls import path
 from .views.base import Index
 from .views.video import ExVideo,VideoSub,CusVideo
 from .views.auth import User,Regist,Logout
+from .views.comment import Comment
 
 urlpatterns = [
     path('',Index.as_view(),name='client_index'),
@@ -17,6 +18,7 @@ urlpatterns = [
     path('video/<int:video_id>',VideoSub.as_view(),name='client_video_sub'),
     path('auth',User.as_view(),name='client_auth'),
     path('auth/regist',Regist.as_view(),name='client_regist'),
-    path('auth/logout',Logout.as_view(),name='client_logout')
+    path('auth/logout',Logout.as_view(),name='client_logout'),
+    path('comment/add',Comment.as_view(),name='client_add_comment')
 
 ]
