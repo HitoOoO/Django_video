@@ -40,7 +40,7 @@ def render_to_response(request,template,data=None):
     result['request'] = request
     request.META["CSRF_COOKIE"] = get_token(request)
     result['csrf_token'] = ('<div style="display:none">'
-                            '<input type="hidden" '
+                            '<input type="hidden" id="django-csrf-token"'
                             'name="csrfmiddlewaretoken" '
                             'value="{0}"/>'
                             '</div>'.format(request.META["CSRF_COOKIE"]))

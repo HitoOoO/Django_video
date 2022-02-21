@@ -1,5 +1,10 @@
 <%inherit file="../base.html" />
 <%def name="content()">
+<%!
+from django.shortcuts import reverse
+from app.model.video import FromType
+from app.utils.permission import client_auth
+%>
 <img src="${video.image}" class="video-images" />
 
 <div class="data">
@@ -19,11 +24,15 @@
     </p>
     <p>
         <span class="span">选集: </span><br/>
+        % if FromType(video.from_to) == FromType.custom and not client_auth(request):
+        <a href="${reverse('client_auth')}">请您登录</a>
+        % else:
         <ul class="number-ul">
         % for data in video.video_sub.all():
             <li><a href="${data.url}"  target="_blank">第${data.number}集</a></li>
         % endfor
         </ul>
+        % endif
     </p>
 </div>
 </%def>
