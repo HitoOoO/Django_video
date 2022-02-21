@@ -9,8 +9,9 @@ from django.views.generic import View
 from app.libs.base_render import render_to_response
 from django.shortcuts import redirect,reverse
 from django.http import JsonResponse
+from app.models import Comment,ClientUser,Video
 
-class Comment(View):
+class CommentView(View):
     def post(self,request):
         content = request.POST.get('content','')
         user_id = request.POST.get('userId','')
@@ -20,5 +21,12 @@ class Comment(View):
             return JsonResponse({'code':-1,'msg':'缺少必要字段'})
 
         print(content,user_id,video_id)
+        video = Video.objects.get(pk=video_id)
+        user = ClientUser.objects.get(pk=user_id)
+        comment=Comment.objects.create(content=content,video=video,user=user)
 
-        return JsonResponse({'code':0,'msg':'success'})
+        data = {'Comment':comment.data()}
+
+
+
+        return JsonResponse({'code':0,'msg':'success','data':data})
