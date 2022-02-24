@@ -46,6 +46,18 @@ from app.utils.permission import client_auth
             % endif
         </div>
     </p>
+    <div class="comment-show-area">
+        <span class="span">评论展示</span>
+        <div id="ajax-comment-show"></div>
+        <ul class="comment-show">
+            % for comment in comments:
+            <li>
+                <span>${comment.content}</span>
+                <span>${comment.user.username}</span>
+            </li>
+            % endfor
+        </ul>
+    </div>
 </div>
 </%def>
 <%def name="css()">

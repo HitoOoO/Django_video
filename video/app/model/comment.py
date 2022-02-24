@@ -11,7 +11,7 @@ from .video import Video
 
 class Comment(models.Model):
     content = models.TextField()
-    #status = models.BooleanField(default=True, db_index=True)
+    status = models.BooleanField(default=True, db_index=True)
     video = models.ForeignKey(
         Video,
         related_name='comment',

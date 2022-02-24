@@ -11,7 +11,8 @@ from django.contrib.auth import login,authenticate,logout
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from app.utils.permission import dashboard_auth
-
+from app.models import ClientUser
+from django.http import JsonResponse
 class Login(View):
     TEMPLATE = 'dashboard/auth/login.html'
 
@@ -86,3 +87,20 @@ class UpdateAdminStatus(View):
 
         return redirect(reverse('admin_manger'))
 
+
+class ClientManager(View):
+    TEMPLATE ='dashboard/auth/client_user.html'
+
+    def get(self,request):
+
+        users= ClientUser.objects.all()
+        data = {'users':users}
+        return render_to_response(request,self.TEMPLATE,data=data)
+
+
+    def post(self,request):
+        user_id = request.POST.get('userId')
+
+        user = ClientUser.objects.get(pk=user_id)
+        user.update_status()
+        return JsonResponse({'code':0,'msg':'success'})

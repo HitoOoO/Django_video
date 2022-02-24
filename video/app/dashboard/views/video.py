@@ -13,7 +13,7 @@ from app.libs.base_render import render_to_response
 from app.utils.common import check_and_get_video_type,handle_video
 from app.model.video import (VideoType,FromType,NationalityType,
                              Video,VideoSub,IdentityType,VideoStar)
-
+from app.models import Comment
 
 class ExternaVideo(View):
     TEMPLATE = 'dashboard/video/externa_video.html'
@@ -94,9 +94,10 @@ class VideoSubView(View):
         data = {}
         video = Video.objects.get(pk=video_id)
         error = request.GET.get('error','')
+        comments = Comment.objects.filter(video=video).order_by('-id')
         data['video'] = video
         data['error'] = error
-
+        data['comments'] = comments
         return render_to_response(request,self.TEMPLATE,data=data)
 
     def post(self,request,video_id):

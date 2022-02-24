@@ -25,7 +25,7 @@ class CommentView(View):
         user = ClientUser.objects.get(pk=user_id)
         comment=Comment.objects.create(content=content,video=video,user=user)
 
-        data = {'Comment':comment.data()}
+        data = {'comment':comment.data()}
 
 
 
